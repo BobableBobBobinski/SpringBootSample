@@ -10,5 +10,12 @@ public class MainController {
     public String showLoginPage(){
         return "login";
     }
-
+    @GetMapping("/")
+    public String showMainPage(){
+        return "MainPage";
+    }
+    @GetMapping("/game")
+    public String showGamePage(){
+        return "TicTacToe";
+    }
 }
