@@ -86,8 +86,8 @@ function Play() {
     }
     for (let i = 0; i < 9; i++) {
         colors[i] = "none";
-        $("#result").css("background", "none");
+        $("#result").css("background", "aquamarine");
         $("#result").text("");
-        current = "aquamarine"
+        current = "blue"
     }
 }
