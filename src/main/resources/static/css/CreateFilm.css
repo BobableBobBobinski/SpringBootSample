@@ -1,0 +1,39 @@
+.block{
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    padding:  10% 0;
+    margin: 15% 0;
+}
+#classp{
+    margin: 0 35%;
+    font-size: 100%;
+    font-family: "Comic Sans MS";
+}
+input{
+    width: 70%;
+    margin: 7% 15%;
+    border: none;
+    padding: 1px 7px;
+    border-bottom: solid 2px gray;
+    outline:none;
+}
+.Registr{
+    background-color: gray;
+}
+#btnResistr{
+    border-radius: 30px;
+    background: linear-gradient(to right, deepskyblue, deeppink);
+    width: 80%;
+    margin: 5% 10% 50%;
+}
+.reg{
+    font-size: 70%;
+    padding: 0 12%;
+}
+.reg a{
+    color: #007bff;
+}
+#classContainer{
+    padding: 0;
+}
