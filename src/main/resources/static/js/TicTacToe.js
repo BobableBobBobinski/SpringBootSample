@@ -79,7 +79,7 @@ function check() {
     return "none";
 }
 
-function Restart() {
+function Play() {
     for (let i = 1; i < 10; i++) {
         $("#s" + i).css("background-color", "aquamarine");
         $("#s" + i).prop("disabled", false);
