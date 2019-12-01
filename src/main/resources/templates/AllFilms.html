@@ -24,7 +24,7 @@
         <td th:text="${film.rating}"></td>
         <td th:text="${film.age}"></td>
         <td>
-            <a th:href="@{'/film/edit?id=' + ${film.id}}">Edit</a>
+            <a class="btn btn-outline-warning" th:href="@{'/film/edit?id=' + ${film.id}}">Edit</a>
         </td>
     </tr>
     </tbody>
