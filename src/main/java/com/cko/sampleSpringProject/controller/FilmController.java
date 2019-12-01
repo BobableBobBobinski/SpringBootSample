@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,15 +34,20 @@ public class FilmController {
         modelAndView.setViewName("EditFilm");
         return modelAndView;
     }
+    @GetMapping("film/delete")
+    public RedirectView DeleteFilm(@RequestParam Long id) {
+        filmDAO.deleteById(id);
+        return new RedirectView("/film/all");
+    }
     @PostMapping("/film/create")
-    public String CreateFilm(Film film) {
+    public RedirectView CreateFilm(Film film) {
         filmDAO.save(film);
-        return "AllFilms";
+        return new RedirectView("/film/all");
     }
     @PostMapping("/film/edit")
-    public String EditFilm(Film film) {
+    public RedirectView EditFilm(Film film) {
         filmDAO.save(film);
-        return "AllFilms";
+        return new RedirectView("/film/all");
     }
     @GetMapping("/testT")
     public ModelAndView showFirstFilm(){
