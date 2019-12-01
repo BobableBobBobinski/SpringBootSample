@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>All Films</title>
@@ -7,29 +7,28 @@
 <body>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="static/css/allFilms.css" rel="stylesheet">
-<div>
-    <table class="table table-dark">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Rating</th>
-            <th scope="col">Age</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><button type="button" class="btn btn-primary">Edit</button></td>
-            <td><button type="button" class="btn btn-danger">Delete</button></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Age</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="film :${films}">
+        <td th:text="${film.id}"></td>
+        <td th:text="${film.title}"></td>
+        <td th:text="${film.rating}"></td>
+        <td th:text="${film.age}"></td>
+        <td>
+            <a th:href="@{'/film/edit?id=' + ${film.id}}">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>
