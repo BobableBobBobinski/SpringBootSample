@@ -22,10 +22,8 @@ public class MainController {
         return "TicTacToe";
     }
     @GetMapping("/test")
-    public String testing(@RequestParam String name, @RequestParam String mood){
-        System.out.println(name);
-        System.out.println(mood);
-        return "test";
+    public String showTestPage() {
+        return "Testing";
     }
 
 }
