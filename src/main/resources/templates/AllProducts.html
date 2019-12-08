@@ -25,7 +25,7 @@
             <td th:text="${product.price}"></td>
             <td th:text="${product.amount}"></td>
             <td><a class="btn btn-outline-warning" th:href="@{'/products/edit?id=' + ${product.id}}">Edit</a></td>
-            <td><a class="btn btn-outline-warning" th:href="@{'/products/delete?id=' + ${product.id}}">Delete</a></td>
+            <td><a type="button" class="btn btn-danger" th:href="@{'/products/buy?id=' + ${product.id}}" th:if="${product.amount}!=0">Buy</a></td>
         </tr>
         </tbody>
     </table>

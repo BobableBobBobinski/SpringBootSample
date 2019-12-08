@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+
 import java.util.List;
+
 @Controller
 
 public class ProductController {
@@ -22,41 +24,46 @@ public class ProductController {
     ProductDAO productDAO;
 
     @GetMapping("/products/all")
-        public ModelAndView showAllProductsPage(){
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("allProducts");
-            List<Product> productlist = productDAO.findAll();
-            modelAndView.addObject("products",productlist);
+    public ModelAndView showAllProductsPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("AllProducts");
+        List<Product> productlist = productDAO.findAll();
+        modelAndView.addObject("products", productlist);
 
-            return modelAndView;
-        }
-
-
-        @GetMapping("/products/create")
-        public String showCreateProductPage() {
-            return "createProduct";
-        }
+        return modelAndView;
+    }
 
 
-        @GetMapping("/products/edit")
-            public ModelAndView showEditProductPage(@RequestParam Long id){
-                ModelAndView modelAndView = new ModelAndView();
+    @GetMapping("/products/create")
+    public String showCreateProductPage() {
+        return "CreateProduct";
+    }
 
-                Product product = productDAO.findProductById(id);
-                modelAndView.addObject("product",product);
-                modelAndView.setViewName("editProduct");
-                return modelAndView;
-            }
-            @PostMapping("/products/edit")
-            public RedirectView editFilm(Product product){
-                productDAO.save(product);
+    @GetMapping("/products/buy")
+    public RedirectView BuyProduct() {
+        return new RedirectView("/products/all");
+    }
+    @GetMapping("/products/edit")
+    public ModelAndView showEditProductPage(@RequestParam Long id) {
+        ModelAndView modelAndView = new ModelAndView();
 
-                return new RedirectView("/products/all");
+        Product product = productDAO.findProductById(id);
+        modelAndView.addObject("product", product);
+        modelAndView.setViewName("EditProduct");
+        return modelAndView;
+    }
 
-            }
-            @PostMapping("/products/create")
-            public RedirectView createProduct(Product product){
-                productDAO.save(product);
-                return new RedirectView("/products/all");
-            }
-        }
+    @PostMapping("/products/edit")
+    public RedirectView editFilm(Product product) {
+        productDAO.save(product);
+
+        return new RedirectView("/products/all");
+
+    }
+
+    @PostMapping("/products/create")
+    public RedirectView createProduct(Product product) {
+        productDAO.save(product);
+        return new RedirectView("/products/all");
+    }
+}
