@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Films</title>
+</head>
+<body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="static/css/allFilms.css" rel="stylesheet">
+<div>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Age</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product :${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.amount}"></td>
+            <td><a class="btn btn-outline-warning" th:href="@{'/products/edit?id=' + ${product.id}}">Edit</a></td>
+            <td><a class="btn btn-outline-warning" th:href="@{'/products/delete?id=' + ${product.id}}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div align="center">
+    <a class="btn btn-outline-info" th:href="@{'/product/create'}">Create</a>
+</div>
+</body>
+</html>
