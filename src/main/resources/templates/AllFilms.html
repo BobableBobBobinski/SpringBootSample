@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
 <head>
     <meta charset="UTF-8">
     <title>All Films</title>
 </head>
 <body>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="static/css/allFilms.css" rel="stylesheet">
+
 <div>
 <table class="table">
     <thead class="thead-dark">
@@ -18,22 +19,27 @@
         <th scope="col">Actions</th>
     </tr>
     </thead>
-    <tbody>
-    <tr th:each="film :${films}">
-        <td th:text="${film.id}"></td>
-        <td th:text="${film.title}"></td>
-        <td th:text="${film.rating}"></td>
-        <td th:text="${film.age}"></td>
-        <td>
-            <a class="btn btn-outline-warning" th:href="@{'/film/edit?id=' + ${film.id}}">Edit</a>
-            <a class="btn btn-outline-dark" th:href="@{'/film/delete?id=' + ${film.id}}">Delete</a>
-        </td>
-    </tr>
+    <tbody id="forAdd">
+<!--    <tr th:each="film :${films}">-->
+<!--        <td th:text="${film.id}"></td>-->
+<!--        <td th:text="${film.title}"></td>-->
+<!--        <td th:text="${film.rating}"></td>-->
+<!--        <td th:text="${film.age}"></td>-->
+<!--        <td>-->
+<!--            <a class="btn btn-outline-warning" th:href="@{'/film/edit?id=' + ${film.id}}">Edit</a>-->
+<!--            <a class="btn btn-outline-dark" th:href="@{'/film/delete?id=' + ${film.id}}">Delete</a>-->
+<!--        </td>-->
+<!--    </tr>-->
     </tbody>
 </table>
 </div>
-<div align="center">
-    <a class="btn btn-outline-info" th:href="@{'/film/create'}">Create</a>
-</div>
+<!--<div align="center">-->
+<!--    <a class="btn btn-outline-info" th:href="@{'/film/create'}">Create</a>-->
+<!--</div>-->
+ <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+ <script src="/js/AllFilms.js" type="application/javascript"></script>
+ <button class="btn btn-primary" onclick="test()"> Click to make ajax request</button>
 </body>
 </html>
