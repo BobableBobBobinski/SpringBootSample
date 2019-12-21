@@ -18,52 +18,57 @@ import java.util.List;
 
 @Controller
 
+@RequestMapping("/products")
 public class ProductController {
-
     @Autowired
     ProductDAO productDAO;
 
-    @GetMapping("/products/all")
-    public ModelAndView showAllProductsPage() {
+    @GetMapping("/all")
+    public ModelAndView showAllProductsPage(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("AllProducts");
+        modelAndView.setViewName("allProducts");
         List<Product> productlist = productDAO.findAll();
-        modelAndView.addObject("products", productlist);
+        modelAndView.addObject("products",productlist);
 
         return modelAndView;
     }
 
 
-    @GetMapping("/products/create")
+    @GetMapping("/create")
     public String showCreateProductPage() {
-        return "CreateProduct";
+        return "createProduct";
     }
 
-    @GetMapping("/products/buy")
-    public RedirectView BuyProduct() {
-        return new RedirectView("/products/all");
-    }
-    @GetMapping("/products/edit")
-    public ModelAndView showEditProductPage(@RequestParam Long id) {
+
+    @GetMapping("/edit")
+    public ModelAndView showEditProductPage(@RequestParam Long id){
         ModelAndView modelAndView = new ModelAndView();
 
         Product product = productDAO.findProductById(id);
-        modelAndView.addObject("product", product);
-        modelAndView.setViewName("EditProduct");
+        modelAndView.addObject("product",product);
+        modelAndView.setViewName("editProduct");
         return modelAndView;
     }
-
-    @PostMapping("/products/edit")
-    public RedirectView editFilm(Product product) {
+    @PostMapping("/edit")
+    public RedirectView editProduct(Product product){
         productDAO.save(product);
 
         return new RedirectView("/products/all");
 
     }
-
-    @PostMapping("/products/create")
-    public RedirectView createProduct(Product product) {
+    @PostMapping("/create")
+    public RedirectView createProduct(Product product){
         productDAO.save(product);
         return new RedirectView("/products/all");
+    }
+    @GetMapping("/buy")
+    public RedirectView showBuyPage(@RequestParam Long id){
+
+        Product product = productDAO.findProductById(id);
+        product.setAmount(productDAO.findProductById(id).getAmount()-1);
+        productDAO.save(product);
+
+        return new RedirectView("/products/all");
+
     }
 }

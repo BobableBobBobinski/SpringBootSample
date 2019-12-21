@@ -3,11 +3,8 @@ package com.cko.sampleSpringProject.controller.rest;
 import com.cko.sampleSpringProject.dao.FilmDAO;
 import com.cko.sampleSpringProject.model.Film;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -18,13 +15,22 @@ public class FilmRestController {
     @Autowired
     FilmDAO filmDAO;
 
+    @PostMapping("/create")
+    public void createFilm(@RequestBody Film film) {
+        filmDAO.save(film);
+    }
+
     @GetMapping("/get")
     public Film getFilmById(@RequestParam Long id) {
-        return filmDAO.findFilmById(id);
+        Film film = filmDAO.findFilmById(id);
+
+        return film;
     }
+
     @GetMapping("/all")
-    public List<Film> showAllFilms(){
+    public List<Film> getAllFilms() {
         List<Film> films = filmDAO.findAll();
         return films;
     }
+
 }

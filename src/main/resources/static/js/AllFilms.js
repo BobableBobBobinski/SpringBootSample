@@ -1,24 +1,9 @@
-function test() {
+function test () {
 
-    $.ajax({
-        url: '/api/film/get?id=1',
-        type: 'get',
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        success: function (film) {
-            console.log(film);
-            console.log(film.title);
-            console.log(film.rating);
-            alert('success');
-        },
-        error: function (response) {
-            alert('error');
-        }
-    });
+
 }
 
 $(document).ready(function () {
-    alert("loaded");
     $.ajax({
         url: '/api/film/all',
         type: 'get',
@@ -26,18 +11,45 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (films) {
             console.log(films);
-            for (var i = 0; i < films.length; i++) {
-                $("#forAdd").after("<tr>" + "<td>" + films[i].id + "</td>" +
-                    "<td>" + films[i].title + "</td>" + "<td>" +
-                    films[i].rating + "</td>" + "<td>" + films[i].age + "</td>" + "</tr>" + "<td>" +
-                    "<a class=\"btn btn-outline-warning\" href=\"/film/edit?id=" + films[i].id + "\">Edit</a>" +
-                    "<a class=\"btn btn-outline-dark\" href=\"/film/delete?id=" + films[i].id + "\">Delete</a>" +
-                    "</td>");
+            for (let i = 0; i < films.length; i++) {
+                $("#forAdd").before("<tr>" +
+                    "<td>" + films[i].id + "</td>" +
+                    "<td>" + films[i].title + "</td>" +
+                    "<td>" + films[i].rating + "</td>" +
+                    "<td>" + films[i].age + "</td>" +
+                    "<td>" +
+                    "<a class=\"btn btn-info\" href=\"/films/editFilm?id=" + films[i].id+"\">Edit</a>" +
+                    "<a class=\"btn btn-danger\" href=\"/films/deleteFilm?id=" + films[i].id+"\">Delete</a>" +
+                    "</td>" +
+                    "</tr>")
             }
-        },
 
+        },
         error: function (response) {
             alert('error');
         }
-    })
-})
+    });
+});
+function addFilm() {
+    var title = $("#title").val();
+    var rating = $("#rating").val();
+    var age = $("#age").val();
+
+    var newFilm = {
+        'title' : title,
+        'rating' : rating,
+        'age' : age
+    }
+    $.ajax({
+        method: "post",
+        url: "/api/film/create",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(newFilm),
+        success: function() {
+            window.location.replace("/film/all");
+        },
+        error: function (error) {
+
+        }
+    });
+}
