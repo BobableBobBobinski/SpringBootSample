@@ -19,7 +19,7 @@ $(document).ready(function () {
                     "<td>" + films[i].age + "</td>" +
                     "<td>" +
                     "<button class=\"btn btn-info\" data-toggle=\"modal\" data-target=\"#edit-modal\" onclick=\"fillModal(" + films[i].id + ")\">Edit</button>" +
-                    "<a class=\"btn btn-danger\" href=\"/films/deleteFilm?id=" + films[i].id +"\">Delete</a>" +
+                    "<a type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#aus\" onclick=\"fillToDelete("+films[i].id+")\">Delete</a>" +
                     "</td>" +
                     "</tr>")
             }
@@ -73,16 +73,22 @@ function sendEditData() {
         }
     });
 }
-function DeleteFilmData() {
+function deleteFilm() {
+    var id = $("#id-delete").val();
+    alert(id);
+
     $.ajax({
         method: "get",
-        url: "/api/film/delete" + id,
+        url: "/api/films/delete?id=" + id,
         contentType: "application/json; charset=utf-8",
-        success: function() {
-            window.location.replace("/film/all");
+
+        success: function () {
+            window.location.replace("/films/all");
+
+
         },
         error: function (error) {
-            alert("errorrrrr");
+            alert("error")
         }
     });
 }
@@ -108,4 +114,19 @@ function addFilm() {
 
         }
     });
+}
+function fillToDelete(id) {
+    alert(id)
+
+    $.ajax({
+        method: "get",
+        url:"/api/films/get?id="+id,
+        contentType:"application/json; charset=utf-8",
+        success: function (films) {
+            $("#id-delete").val(films.id);
+
+
+        }
+    })
+
 }
