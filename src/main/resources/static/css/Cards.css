@@ -1,1 +1,6 @@
-background-image: url();
+body {
+    background-image: url("templates/Russian_Blackjack/table.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
